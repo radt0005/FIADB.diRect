@@ -15,10 +15,9 @@ The package provides tools for querying FIA databases and generating:
 
 # Database Requirements
 
-FIADB.diRect is a client package for FIA PostgreSQL databases and does not ship with FIA data.
+FIADB.diRect is a client package for FIA PostgreSQL databases and <u>does not ship with FIA data</u>.
 
 Before using this package, users must have access to an FIA database that has already been loaded into PostgreSQL and is accessible from R. The package connects directly to the PostgreSQL database to retrieve records, observations, and estimates.
-
 
 ## Main Functions
 
@@ -34,6 +33,8 @@ Before using this package, users must have access to an FIA database that has al
 | `create_filter()` | Build SQL filter expressions |
 
 ## Installation
+
+**Important:** FIADB.diRect **does not ship with FIA data**. Users must have access to an FIA database that has already been loaded into PostgreSQL.
 
 ### From GitHub
 
