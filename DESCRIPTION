@@ -1,0 +1,19 @@
+Package: FIADB.diRect
+Type: Package
+Title: Direct FIA Database Access Functions
+Version: 0.0.1
+Authors@R:
+    person("Phil", "Radtke",
+           role = c("aut", "cre"),
+           email = "pradtke@vt.edu")
+Description: Functions for querying FIA databases and generating
+    FIA Green Book estimates, plot observations, tree observations,
+    and record retrievals.
+Imports:
+    DBI,
+    dplyr,
+    rstudioapi
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+Config/roxygen2/version: 8.0.0
