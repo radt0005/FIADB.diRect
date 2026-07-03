@@ -75,8 +75,8 @@ The package currently passes:
 - R CMD check: 0 warnings
 - R CMD check: 0 notes
 
-## Author
+## Authors
 
-Phil Radtke
+Phil Radtke, Aakriti Sapkota, David Walker
 
 Virginia Tech
