@@ -5,6 +5,7 @@
 
 *.Rcheck/
 *.tar.gz
+*.bak
 
 .Rproj.user
 

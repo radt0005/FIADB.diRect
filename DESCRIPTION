@@ -11,8 +11,7 @@ Description: Functions for querying FIA databases and generating
     and record retrievals.
 Imports:
     DBI,
-    dplyr,
-    rstudioapi
+    dplyr
 License: GPL-3
 Encoding: UTF-8
 LazyData: true

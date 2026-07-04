@@ -49,7 +49,7 @@ GB_est <- function(EVAL_GRP, ATTRIBUTE_NBR, GRP_BY_ATTRIB ="STATECD",FILTER = NA
   } else {
     GRP_BY_ATTRIB <- c(GRP_BY_ATTRIB,"STATECD")
   }
-  # read REF_POP_ATRIBUTE FIA reference table (contains SQL code)
+  # read REF_POP_ATRIBUTE (RPA) FIA reference table (contains SQL code)
   RPA_query <- "SELECT * FROM FS_FIADB.REF_POP_ATTRIBUTE;"
   REF_POP_ATTRIBUTE <- getQuery(RPA_query,con)
   valid_queries <- REF_POP_ATTRIBUTE$ATTRIBUTE_NBR[which(!is.na(REF_POP_ATTRIBUTE$SQL_QUERY))]
