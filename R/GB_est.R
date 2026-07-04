@@ -141,7 +141,12 @@ GB_est <- function(EVAL_GRP, ATTRIBUTE_NBR, GRP_BY_ATTRIB ="STATECD",FILTER = NA
   SQL_QUERY_SE_PART6 <- gsub("&JOINS",JOINS,SQL_QUERY_SE_PART5)
   SQL_QUERY_SE_PART7 <- gsub("FILTER",FILTERS,SQL_QUERY_SE_PART6)
   SQL_QUERY_SE_PART8 <- gsub("&FIADB_SCHEMA",SCHEMA,SQL_QUERY_SE_PART7)
-  SQL_QUERY_SE_PART9 <- gsub("&EVAL_GRP",EVAL_GRP,SQL_QUERY_SE_PART8)
+  if (length(EVAL_GRP) > 1) {
+    EVAL_GRP_SQL <- paste0(EVAL_GRP, collapse = ", ")
+  } else {
+    EVAL_GRP_SQL <- as.character(EVAL_GRP)
+  }
+  SQL_QUERY_SE_PART9 <- gsub("&EVAL_GRP", EVAL_GRP_SQL, SQL_QUERY_SE_PART8)
   queryResults <- getQuery(SQL_QUERY_SE_PART9,con)
   names(queryResults)[which(names(queryResults)=="GROUP_BY_FIELD")] <- GRP_BY_ATTRIB[length(GRP_BY_ATTRIB)]
   #getting the state code and their names from survey table (SURVEY)
