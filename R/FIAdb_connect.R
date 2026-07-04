@@ -58,12 +58,13 @@
 FIAdb_connect <- function(dbname = "fiadb",
                            host = NULL,
                            port = NULL,
-                           user = Sys.getenv("USER", unset = "postgres"),
+                           user = Sys.getenv("FIADB_USER", unset = "spade"),
                            password = Sys.getenv("FIADB_PASSWORD", unset = "")) {
 
   # Auto-detect whether Unix socket is available.
   # Falls back to TCP if socket doesn't exist (e.g. inside Spade sandbox)
   # or if host is explicitly supplied.
+  # message(paste("FIAdb_connect user:",user))
   socket_path <- "/var/run/postgresql"
   use_tcp <- !file.exists(socket_path) || !is.null(host)
 
