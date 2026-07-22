@@ -8,7 +8,7 @@ FIAdb_connect(
   dbname = "fiadb",
   host = NULL,
   port = NULL,
-  user = Sys.getenv("FIADB_USER", unset = "spade"),
+  user = Sys.getenv("FIADB_USER", unset = Sys.getenv("USER", unset = "postgres")),
   password = Sys.getenv("FIADB_PASSWORD", unset = "")
 )
 }

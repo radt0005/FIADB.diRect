@@ -38,7 +38,8 @@
 #'
 #' @seealso \code{\link[DBI]{dbConnect}}, \code{\link{GB_est}}
 #'
-#' @importFrom DBI dbConnect dbDriver
+#' @importFrom DBI dbConnect
+#' @importFrom RPostgres Postgres
 #'
 #' @keywords internal
 #'
@@ -72,7 +73,7 @@ FIAdb_connect <- function(dbname = "fiadb",
 
   if (use_tcp) {
     DBI::dbConnect(
-      DBI::dbDriver("PostgreSQL"),
+      RPostgres::Postgres(),
       dbname   = dbname,
       host     = host %||% Sys.getenv("FIADB_HOST", unset = "localhost"),
       port     = as.integer(port %||% Sys.getenv("FIADB_PORT", unset = "5432")),
@@ -82,7 +83,7 @@ FIAdb_connect <- function(dbname = "fiadb",
   } else {
     # Unix socket connection - peer auth, no password needed
     DBI::dbConnect(
-      DBI::dbDriver("PostgreSQL"),
+      RPostgres::Postgres(),
       dbname = dbname,
       user   = user
     )
