@@ -9,6 +9,7 @@ Authors@R:
 Description: Functions for querying FIA databases and generating
     FIA Green Book estimates, plot observations, tree observations,
     and record retrievals.
+Depends: R (>= 4.1.0)
 Imports:
     DBI,
     dplyr,

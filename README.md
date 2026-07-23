@@ -19,6 +19,30 @@ FIADB.diRect is a client package for FIA PostgreSQL databases and <u>does not sh
 
 Before using this package, users must have access to an FIA database that has already been loaded into PostgreSQL and is accessible from R. The package connects directly to the PostgreSQL database to retrieve records, observations, and estimates.
 
+### Required One-Time Setup: `fix_oracle_syntax()`
+
+The `REF_POP_ATTRIBUTE` reference table stores SQL query templates that
+were originally authored against an Oracle-based FIADB backend. Some of
+these templates use Oracle's `Q'[...]'` quoting operator, which has no
+PostgreSQL equivalent and will cause errors such as
+`ERROR:  type "q" does not exist` when calling functions like
+`GB_est()`.
+
+After loading FIA reference data into your PostgreSQL database, and
+before using `GB_est()`, `GB_est_w_filter()`, or related functions, run:
+
+```r
+library(FIADB.diRect)
+
+# Check how many rows would be affected (no changes made)
+fix_oracle_syntax(dry_run = TRUE)
+
+# Apply the fix
+fix_oracle_syntax(dry_run = FALSE)
+```
+
+This only needs to be run once per database.
+
 ## Main Functions
 
 | Function | Description |
@@ -41,6 +65,9 @@ Before using this package, users must have access to an FIA database that has al
 ```r
 # install.packages("remotes")
 remotes::install_github("radt0005/FIADB.diRect")
+
+# install with pak
+pak::pkg_install("radt0005/FIADB.diRect")
 ```
 
 ### From Source
