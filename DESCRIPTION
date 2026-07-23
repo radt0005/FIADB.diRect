@@ -1,7 +1,7 @@
 Package: FIADB.diRect
 Type: Package
 Title: Direct FIA Database Access Functions
-Version: 0.0.1
+Version: 0.0.2
 Authors@R:
     person("Phil", "Radtke",
            role = c("aut", "cre"),
