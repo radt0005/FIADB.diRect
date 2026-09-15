@@ -19,29 +19,22 @@ FIADB.diRect is a client package for FIA PostgreSQL databases and <u>does not sh
 
 Before using this package, users must have access to an FIA database that has already been loaded into PostgreSQL and is accessible from R. The package connects directly to the PostgreSQL database to retrieve records, observations, and estimates.
 
-### Required One-Time Setup: `fix_oracle_syntax()`
+### Oracle `Q'[...]'` Quoting: No Setup Needed
 
 The `REF_POP_ATTRIBUTE` reference table stores SQL query templates that
-were originally authored against an Oracle-based FIADB backend. Some of
-these templates use Oracle's `Q'[...]'` quoting operator, which has no
-PostgreSQL equivalent and will cause errors such as
-`ERROR:  type "q" does not exist` when calling functions like
-`GB_est()`.
+were originally authored against an Oracle-based FIADB backend. Some FIA
+DataMart downloads have templates that use Oracle's `Q'[...]'` quoting
+operator (which has no PostgreSQL equivalent), and some don't.
 
-After loading FIA reference data into your PostgreSQL database, and
-before using `GB_est()`, `GB_est_w_filter()`, or related functions, run:
+`GB_est()`, `GB_est_w_filter()`, `PLOT_obs()`, and `TREE_obs()` all
+handle this automatically and transparently -- no setup step required,
+and nothing in your PostgreSQL database is ever modified. Whichever
+style your DataMart download used, it just works.
 
-```r
-library(FIADB.diRect)
-
-# Check how many rows would be affected (no changes made)
-fix_oracle_syntax(dry_run = TRUE)
-
-# Apply the fix
-fix_oracle_syntax(dry_run = FALSE)
-```
-
-This only needs to be run once per database.
+(`fix_oracle_syntax()` still exists for the rare case where something
+*other than* FIADB.diRect needs the `REF_POP_ATTRIBUTE` rows themselves
+to already be PostgreSQL-compatible -- see `?fix_oracle_syntax`. Most
+users will never need it.)
 
 ## Main Functions
 

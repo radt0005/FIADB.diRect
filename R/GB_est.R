@@ -121,6 +121,7 @@ GB_est <- function(EVAL_GRP, ATTRIBUTE_NBR, GRP_BY_ATTRIB ="STATECD",FILTER = NA
   # load the base query from REF_POP_ATTRIBUTE
   SQL_QUERY_SE_BASE <- REF_POP_ATTRIBUTE$SQL_QUERY_SE[REF_POP_ATTRIBUTE$ATTRIBUTE_NBR == ATTRIBUTE_NBR]
   SQL_QUERY_SE_BASE = toupper(SQL_QUERY_SE_BASE)
+  SQL_QUERY_SE_BASE = normalize_oracle_quoting(SQL_QUERY_SE_BASE)
   #line XXX to line XXX must be run in order
   #sub function replace the first value only
   SQL_QUERY_SE_PART1<- sub('&GRP_BY_ATTRIB GRP_BY_ATTRIB',GRP_BY_ATTRIB_PT1, SQL_QUERY_SE_BASE)
