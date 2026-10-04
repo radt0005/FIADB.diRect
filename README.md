@@ -87,7 +87,7 @@ The package requires access to an FIA PostgreSQL database and appropriate Postgr
 
 ## Development Status
 
-Current version: **0.0.1**
+Current version: **0.0.3**
 
 The package currently passes:
 

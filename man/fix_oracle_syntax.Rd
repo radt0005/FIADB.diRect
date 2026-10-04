@@ -2,7 +2,7 @@
 % Please edit documentation in R/fix_oracle_syntax.R
 \name{fix_oracle_syntax}
 \alias{fix_oracle_syntax}
-\title{Repair Oracle-Style Quoting in REF_POP_ATTRIBUTE}
+\title{Permanently Rewrite Oracle-Style Quoting Stored in REF_POP_ATTRIBUTE}
 \usage{
 fix_oracle_syntax(dbname = "fiadb", SCHEMA = "FS_FIADB", dry_run = TRUE)
 }
@@ -22,29 +22,21 @@ Invisibly, a named integer vector with the number of affected (or
 updated) rows in \code{SQL_QUERY} and \code{SQL_QUERY_SE}.
 }
 \description{
-The \code{REF_POP_ATTRIBUTE} FIA reference table stores SQL query
-templates (in \code{SQL_QUERY} and \code{SQL_QUERY_SE}) that were
-originally authored against an Oracle-based FIADB / EVALIDator
-backend. Some of these templates use Oracle's alternative quoting
-operator, \code{Q'[...]'}, to safely embed the substituted
-\code{&FILTER} text as an output column even when the filter text
-contains single quotes. PostgreSQL has no equivalent operator, so
-when \code{FIADB.diRect} functions (e.g. \code{\link{GB_est}})
-substitute an empty or non-empty \code{FILTER} into these templates,
-PostgreSQL fails with an error such as:
-\code{ERROR:  type "q" does not exist}.
+\strong{Not required for FIADB.diRect to work} -- \code{\link{GB_est}}
+and friends now handle \code{Q'[...]'} quoting automatically and
+transparently via \code{\link{normalize_oracle_quoting}}, entirely in
+R memory, without touching anything in Postgres. This function
+predates that and takes the opposite approach: it permanently
+rewrites the \code{SQL_QUERY}/\code{SQL_QUERY_SE} columns in the
+\code{REF_POP_ATTRIBUTE} table itself via \code{UPDATE}, so Postgres's
+copy will no longer match the DataMart download's native format.
 }
 \details{
-This function rewrites any occurrences of \code{Q'[&FILTER]'} in the
-\code{SQL_QUERY} and \code{SQL_QUERY_SE} columns to PostgreSQL's
-dollar-quoting syntax, \code{$$&FILTER$$}, which behaves equivalently
-(a literal string that safely tolerates embedded single quotes) and
-is valid PostgreSQL syntax after \code{&FILTER} substitution.
-
-This is intended to be run once, after loading FIA reference data
-into a PostgreSQL \code{REF_POP_ATTRIBUTE} table, and before using
-functions such as \code{\link{GB_est}} or
-\code{\link{GB_est_w_filter}}.
+Reach for this only if something \emph{other than} FIADB.diRect reads
+\code{REF_POP_ATTRIBUTE} directly and needs the stored text to
+already be PostgreSQL-compatible (e.g. a non-R tool without its own
+equivalent of \code{normalize_oracle_quoting}). If you're only using
+FIADB.diRect's own functions, you don't need to run this at all.
 }
 \examples{
 \dontrun{

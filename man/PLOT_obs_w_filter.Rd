@@ -45,9 +45,10 @@ A data frame containing filtered plot-level observations and
 associated FIA estimate statistics.
 }
 \description{
-Returns plot-level observations from FIA databases for a specified
-evaluation group and attribute using filter criteria supplied as
-variable names, values, comparison operators, and logical connectors.
+Returns plot-level observations, not actual PLOT table records, from 
+FIA databases for a specified evaluation group and attribute using 
+filter criteria supplied as variable names, values, comparison 
+operators, and logical connectors.
 }
 \details{
 This function simplifies filtered analyses by constructing the
