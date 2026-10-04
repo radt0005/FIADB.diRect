@@ -74,9 +74,10 @@ TREE_obs_w_filter <- function(EVAL_GRP, ATTRIBUTE_NBR, GRP_BY_ATTRIB="CN",
     FILTER <- FILTER_NONE
   } else {
     #calling create_filter function to get sql code required for filtering
-    FILTER <- create_filter(VAR_NAMES, VAR_VALUES, VAR_CONDS, VAR_BOOLS)
+    FILTER <- create_filter(VAR_NAMES, VAR_VALUES, VAR_CONDS, VAR_BOOLS, dbname = dbname)
   }
-  query_result <- TREE_obs(EVAL_GRP,ATTRIBUTE_NBR,GRP_BY_ATTRIB, FILTER = FILTER)
+  query_result <- TREE_obs(EVAL_GRP,ATTRIBUTE_NBR,GRP_BY_ATTRIB, FILTER = FILTER,
+                         SCHEMA = SCHEMA, dbname = dbname)
   return(query_result)
 }
 

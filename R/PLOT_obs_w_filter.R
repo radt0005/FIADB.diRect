@@ -3,9 +3,10 @@
 #
 #' Retrieve FIA Plot Observations with Filters
 #'
-#' Returns plot-level observations from FIA databases for a specified
-#' evaluation group and attribute using filter criteria supplied as
-#' variable names, values, comparison operators, and logical connectors.
+#' Returns plot-level observations, not actual PLOT table records, from 
+#' FIA databases for a specified evaluation group and attribute using 
+#' filter criteria supplied as variable names, values, comparison 
+#' operators, and logical connectors.
 #'
 #' This function simplifies filtered analyses by constructing the
 #' required SQL filter expression and passing it to \code{PLOT_obs()}.
@@ -73,9 +74,10 @@ PLOT_obs_w_filter <- function(EVAL_GRP, ATTRIBUTE_NBR, GRP_BY_ATTRIB="CN", SCHEM
     FILTER <- FILTER_NONE
   } else {
     #calling create_filter function to get sql code required for filtering
-    FILTER <- create_filter(VAR_NAMES, VAR_VALUES, VAR_CONDS, VAR_BOOLS)
+    FILTER <- create_filter(VAR_NAMES, VAR_VALUES, VAR_CONDS, VAR_BOOLS, dbname = dbname)
   }
-  query_result <- PLOT_obs(EVAL_GRP,ATTRIBUTE_NBR,GRP_BY_ATTRIB, FILTER = FILTER)
+  query_result <- PLOT_obs(EVAL_GRP,ATTRIBUTE_NBR,GRP_BY_ATTRIB, FILTER = FILTER,
+                         SCHEMA = SCHEMA, dbname = dbname)
   return(query_result)
 }
 
