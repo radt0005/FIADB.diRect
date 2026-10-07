@@ -3,6 +3,7 @@
 .Ruserdata
 .Rproj.user/
 
+^CITATION\.cff$
 *.Rcheck/
 *.tar.gz
 *.bak
