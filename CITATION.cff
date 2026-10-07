@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+type: software
+title: "FIADB.diRect: Direct Access to FIA PostgreSQL Databases"
+abstract: >-
+  R package for direct access to USDA Forest Inventory and Analysis (FIA)
+  PostgreSQL databases and generation of FIA Green Book estimates, plot
+  observations, tree observations, and custom record queries.
+authors:
+  - family-names: Radtke
+    given-names: Phil
+    email: pradtke@vt.edu
+    affiliation: Virginia Tech
+  - family-names: Sapkota
+    given-names: Aakriti
+    affiliation: Virginia Tech
+  - family-names: Walker
+    given-names: David
+    affiliation: Virginia Tech
+version: 0.0.3
+date-released: 2026-10-07
+license: GPL-3.0-only
+repository-code: "https://github.com/radt0005/FIADB.diRect"
+keywords:
+  - forest inventory
+  - FIA
+  - R
+  - PostgreSQL
