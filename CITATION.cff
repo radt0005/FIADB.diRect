@@ -8,9 +8,10 @@ abstract: >-
   observations, tree observations, and custom record queries.
 authors:
   - family-names: Radtke
-    given-names: Phil
+    given-names: Philip
     email: pradtke@vt.edu
     affiliation: Virginia Tech
+    orcid: https://orcid.org/0000-0002-8921-8406
   - family-names: Sapkota
     given-names: Aakriti
     affiliation: Virginia Tech
@@ -19,7 +20,7 @@ authors:
     affiliation: Virginia Tech
 version: 0.0.3
 date-released: 2026-10-07
-license: GPL-3.0-only
+license: GPL-3.0-or-later
 repository-code: "https://github.com/radt0005/FIADB.diRect"
 keywords:
   - forest inventory
